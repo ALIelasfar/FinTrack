@@ -56,8 +56,8 @@ from .summary import (
 )
 
 __all__ = [
-    "Categorizer",
     "DEFAULT_RULES",
+    "Categorizer",
     "Forecast",
     "ForecastPoint",
     "MonthlySummary",

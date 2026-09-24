@@ -52,10 +52,7 @@ def savings_findings(summaries):
         list: One recommendation about the savings rate, or an empty list.
     """
     # The first and last month are usually incomplete, so leave them out.
-    if len(summaries) > 2:
-        complete = summaries[1:-1]
-    else:
-        complete = list(summaries)
+    complete = summaries[1:-1] if len(summaries) > 2 else list(summaries)
     complete = [summary for summary in complete if summary.income > 0]
     if not complete:
         return []
@@ -204,7 +201,7 @@ def category_findings(summaries):
             )
 
     if recent.by_category:
-        name = list(recent.by_category)[0]
+        name = next(iter(recent.by_category))
         amount = recent.by_category[name]
         findings.append(
             Recommendation(

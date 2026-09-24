@@ -3,14 +3,13 @@
 Nothing is ever shown on screen: every function writes a file and returns the
 path it wrote to, so the code also works on a machine without a display.
 """
+from contextlib import suppress
+from pathlib import Path
 
 import matplotlib
 
-matplotlib.use("Agg")  # noqa: E402 - has to be set before pyplot is imported
-
-import matplotlib.pyplot as plt  # noqa: E402
-
-from pathlib import Path  # noqa: E402
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 __all__ = [
     "plot_all",
@@ -233,27 +232,19 @@ def plot_all(summaries, spending, series_list, forecast, output_dir="output", hi
     """
     folder = Path(output_dir)
     written = []
-
-    try:
+    
+    with suppress(ValueError):
         written.append(plot_monthly_cashflow(summaries, folder / "monthly_cashflow.png"))
-    except ValueError:
-        pass
 
-    try:
+    with suppress(ValueError):
         written.append(plot_category_breakdown(spending, folder / "category_breakdown.png"))
-    except ValueError:
-        pass
 
-    try:
+    with suppress(ValueError):
         written.append(plot_recurring_overview(series_list, folder / "recurring_overview.png"))
-    except ValueError:
-        pass
 
-    try:
+    with suppress(ValueError):
         written.append(
             plot_balance_forecast(forecast, folder / "balance_forecast.png", history=history)
         )
-    except ValueError:
-        pass
 
     return written

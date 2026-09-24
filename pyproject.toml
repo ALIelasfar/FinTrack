@@ -9,7 +9,7 @@ description = "Analyse bank transactions: detect recurring payments, forecast ba
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "FinTrack Contributors" }]
+authors = [{ name = "Ali Elasfar", email = "ali.elasfar9@gmail.com" }]
 keywords = ["finance", "transactions", "forecast", "budgeting", "cli"]
 classifiers = [
     "Programming Language :: Python :: 3",

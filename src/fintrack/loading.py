@@ -4,9 +4,8 @@ Bank exports differ a lot: different column names, date formats, decimal
 separators and delimiters. :func:`load_transactions` tries to work all of
 that out on its own.
 """
-
 import csv
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 
 from .models import Transaction, format_money, round_money
@@ -111,11 +110,8 @@ def parse_amount(raw):
     elif "," in cleaned:
         # A lone comma is a decimal separator, unless it groups three digits.
         head, _, tail = cleaned.rpartition(",")
-        if len(tail) == 3 and head:
-            cleaned = head + tail
-        else:
-            cleaned = f"{head}.{tail}"
-
+        cleaned = head + tail if len(tail) == 3 and head else f"{head}.{tail}"
+        
     value = round_money(cleaned)
     if negative and value > 0:
         return -value

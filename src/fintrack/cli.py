@@ -105,10 +105,7 @@ def load_and_categorize(args):
     path = args.file or sample_data_path()
     transactions = load_transactions(path, encoding=args.encoding)
 
-    if args.rules:
-        categorizer = Categorizer.from_json(args.rules)
-    else:
-        categorizer = Categorizer()
+    categorizer = Categorizer.from_json(args.rules) if args.rules else Categorizer()
     return categorizer.categorize_all(transactions)
 
 

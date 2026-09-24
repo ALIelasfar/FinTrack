@@ -9,6 +9,7 @@ the group is a recurring series.
 import re
 import statistics
 from datetime import date, timedelta
+from itertools import pairwise
 
 from .models import RecurringSeries, round_money
 
@@ -235,7 +236,7 @@ def evaluate_group(
 
     # Measure the gaps in days between one booking and the next.
     gaps = []
-    for earlier, later in zip(items, items[1:]):
+    for earlier, later in pairwise(items):
         gap = (later.date - earlier.date).days
         if gap > 0:
             gaps.append(gap)

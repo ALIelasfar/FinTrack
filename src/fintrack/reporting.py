@@ -75,7 +75,7 @@ def format_table(rows, headers):
         numeric.append(all(looks_numeric(value) for value in column))
 
     lines = []
-    for row in [list(headers)] + cells:
+    for row in [list(headers), *cells]:
         parts = []
         for index, value in enumerate(row):
             if numeric[index]:
