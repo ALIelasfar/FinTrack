@@ -52,7 +52,7 @@ Domain Hosting Rechnung       yearly     -119.00      -9.78     3  2027-02-16   
 Requires Python 3.10 or newer.
 
 ```bash
-git clone <YOUR-PUBLIC-GITHUB-REPOSITORY-URL>
+git clone https://github.com/ALIelasfar/FinTrack.git
 cd fintrack
 uv pip install -e .
 ```
